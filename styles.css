@@ -1,0 +1,19 @@
+#students {
+    display: none;
+}
+
+#teachers {
+    display: none;
+}
+
+#sections {
+    display: none;
+}
+#addStu {
+    display: none;
+}
+
+t, th, td {
+    /*border: 2px black solid;*/
+    border-collapse: collapse;
+}

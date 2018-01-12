@@ -8,8 +8,80 @@
     <script src="data.js"></script>
     <link rel="stylesheet" href="styles.css"/>
 </head>
+<body>
 
+<h1>Elucidate</h1>
+<p>School Organization System</p>
+
+<p>View information of
+    <select id="listCategory" onchange="(this.value)">
+        <option value="1">Students</option>
+        <option value="2">Teachers</option>
+        <option value="3">Sections</option>
+
+    </select>
+<button id="listButton" onclick= "list()">View</button>
+<div id = "info"></div>
+
+
+<p>Create a:
+    <select id="Category" onchange="(this.value)">
+        <option value="1">Student</option>
+        <option value="2">Teacher</option>
+        <option value="3">Section</option>
+
+    </select>
+
+    <button id="addPerson" onclick= "addPerson()">Add</button>
+
+<div id = "chooseCat"></div>
+
+<div id="students">
+    <p1>First Name:</p1>
+    <input type="text" id="firstName" value="" size="20">
+    <p1>Last Name:</p1>
+    <input type="text" id="lastName" value="" size="20">
+    <p1>Student Grade:</p1>
+    <input type="number" id="grade" value="" size="20">
+    <button id="addStudent" onclick= "addStudent()">Submit</button>
+</div>
+
+<div id="teachers">
+    <p1>First Name:</p1>
+    <input type="text" id="firsName" value="" size="20">
+    <p1>Last Name:</p1>
+    <input type="text" id="lasName" value="" size="20">
+    <p1>Subject:</p1>
+    <input type="number" id="subject" value="" size="20">
+    <button id="addTeacher" onclick= "addTeacher()">Submit</button>
+</div>
+
+
+<div id="sections">
+    <p1>Section Name:</p1>
+    <input type="text" id="sectionName" value="" size="20">
+    <p1>Teacher:</p1>
+    <input type="text" id="teacherName" value="" size="20">
+    <button id="addSection" onclick= "addSection()">Submit</button>
+</div>
+<div id = "notFilledOut"></div>
+
+<p>
+<button id="myButton" onclick="displayStudentToSection()">Add a Student to a Section</button>
+<div id="addStu">
+    <select id="selectStu">
+        <option value="ID">Students</option>
+        <!--in js<option value="6">Tegan</option>-->
+    </select>
+
+    <select id="selectSect">
+        <option value="ID">Sections</option>
+    </select>
+    <button id="addStu2Section" onclick= "addStuToSection()">Submit</button>
+</div>
+</p>
 
 
 </body>
 </html>
+

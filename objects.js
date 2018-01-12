@@ -6,10 +6,6 @@ function Student(firstName,lastName,grade) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.grade = grade;
-
-    /* needs to be implemented
-    this.sections = [];
-     */
 }
 
 var teacherId = 0;
@@ -33,16 +29,29 @@ function Teacher(firstName,lastName,subject) {
 // teacher - Teacher
 // add student(Student)
 // removeStudent(id)
+var sec = new Section("Math",32)
 
+sec.teacher = "Albinson";
+// sec.addStudent(Student);
 
-function Section(name,count, currentSize, maxSize, teacher, student) {
+function Section(name, teacher) {
     this.name = name;
-    this.count = count;
-    this.maxSize = maxSize;
-    this.currentSize = currentSize;
+    this.maxSize = 32;
+    this.currentSize = this.students.length;
     this.teacher = teacher;
-    this.student = student;
+    this.students = [];
 
+
+    this.addStudent = function(studentToAdd) {
+
+        this.students.push(studentToAdd);
+
+    };
+
+    this.removeStudent = function(studentToRemove){
+
+
+    }
     /* Needs to be implemented
 
     this.students = [];
@@ -61,4 +70,5 @@ function Section(name,count, currentSize, maxSize, teacher, student) {
     }
     */
 }
-sectionSeatsRemaining()
+
+//sectionSeatsRemaining()
