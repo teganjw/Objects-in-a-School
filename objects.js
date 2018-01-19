@@ -1,16 +1,14 @@
+var id = 0;
 
-
-var studentId = 0;
 function Student(firstName,lastName,grade) {
-    this.id = studentId++;
+    this.id = id++;
     this.firstName = firstName;
     this.lastName = lastName;
     this.grade = grade;
 }
 
-var teacherId = 0;
 function Teacher(firstName,lastName,subject) {
-    this.id = teacherId++;
+    this.id = id++;
     this.firstName = firstName;
     this.lastName = lastName;
     this.subject = subject;
@@ -29,23 +27,21 @@ function Teacher(firstName,lastName,subject) {
 // teacher - Teacher
 // add student(Student)
 // removeStudent(id)
-var sec = new Section("Math",32)
+var sec = new Section("Math",32);
 
 sec.teacher = "Albinson";
 // sec.addStudent(Student);
 
 function Section(name, teacher) {
+    this.id = id++;
     this.name = name;
     this.maxSize = 32;
-    this.currentSize = this.students.length;
+    // this.currentSize = this.students.length;
     this.teacher = teacher;
     this.students = [];
 
-
     this.addStudent = function(studentToAdd) {
-
         this.students.push(studentToAdd);
-
     };
 
     this.removeStudent = function(studentToRemove){

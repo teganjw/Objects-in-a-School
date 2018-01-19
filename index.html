@@ -11,7 +11,7 @@
 <body>
 
 <h1>Elucidate</h1>
-<p>School Organization System</p>
+<p>School Management System</p>
 
 <p>View information of
     <select id="listCategory" onchange="(this.value)">
@@ -37,49 +37,35 @@
 <div id = "chooseCat"></div>
 
 <div id="students">
-    <p1>First Name:</p1>
-    <input type="text" id="firstName" value="" size="20">
-    <p1>Last Name:</p1>
-    <input type="text" id="lastName" value="" size="20">
-    <p1>Student Grade:</p1>
-    <input type="number" id="grade" value="" size="20">
+    <input type="text" id = "firstName" onfocus="this.value=''" placeholder="First Name">
+    <input type="text" id = "lastName" onfocus="this.value=''" placeholder="Last Name">
+    <input type="text" id = "grade" onfocus="this.value=''" placeholder="Student Grade">
     <button id="addStudent" onclick= "addStudent()">Submit</button>
 </div>
 
 <div id="teachers">
-    <p1>First Name:</p1>
-    <input type="text" id="firsName" value="" size="20">
-    <p1>Last Name:</p1>
-    <input type="text" id="lasName" value="" size="20">
-    <p1>Subject:</p1>
-    <input type="number" id="subject" value="" size="20">
+    <input type="text" id = "firsName" onfocus="this.value=''" placeholder="First Name">
+    <input type="text" id = "lasName" onfocus="this.value=''" placeholder="Last Name">
+    <input type="text" id = "subject" onfocus="this.value=''" placeholder="Subject">
     <button id="addTeacher" onclick= "addTeacher()">Submit</button>
 </div>
 
 
 <div id="sections">
-    <p1>Section Name:</p1>
-    <input type="text" id="sectionName" value="" size="20">
-    <p1>Teacher:</p1>
-    <input type="text" id="teacherName" value="" size="20">
+    <input type="text" id = "sectionName" onfocus="this.value=''" placeholder="Section Name">
+    <input type="text" id = "teacherName" onfocus="this.value=''" placeholder="Teacher Name">
     <button id="addSection" onclick= "addSection()">Submit</button>
 </div>
 <div id = "notFilledOut"></div>
 
-<p>
-<button id="myButton" onclick="displayStudentToSection()">Add a Student to a Section</button>
-<div id="addStu">
-    <select id="selectStu">
-        <option value="ID">Students</option>
-        <!--in js<option value="6">Tegan</option>-->
-    </select>
 
-    <select id="selectSect">
-        <option value="ID">Sections</option>
-    </select>
-    <button id="addStu2Section" onclick= "addStuToSection()">Submit</button>
+<p>
+<button id="myButton" onclick="buildSelectList()">Add a Student to a Section</button>
+<div id = "none">
+    <select id = "stuId"></select>
+    <select id = "secId"></select>
+    <button id="button2" onclick="addToSec()">add</button>
 </div>
-</p>
 
 
 </body>

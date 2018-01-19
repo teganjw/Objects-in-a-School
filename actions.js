@@ -1,22 +1,51 @@
 
 function list(){
-    var t = "<table border = '1'>";
-    t+= ("<tr><td>" + 'First Name' + "</td>");
-    t+= ("<td>" + 'Last Name' + "</td>");
-    t+= ("<td>" + 'Grade' + "</td>");
-    t+= ("<td>" + 'Student ID' + "</td></tr>");
-    for(var i=0; i<allStudents.length; i++){
-        t+= ("<tr><td>" + allStudents[i].firstName + "</td>");
-        t+= ("<td>" + allStudents[i].lastName + "</td>");
-        t+= ("<td>" + allStudents[i].grade + "</td>");
-        t+= ("<td>" + allStudents[i].id + "</td></tr>");
+    var type = document.getElementById("listCategory").value;
+console.log(type)
+    if(type == 1){
+        var s = "<table border = '1'>";
+        s+= ("<tr><td>" + 'First Name' + "</td>");
+        s+= ("<td>" + 'Last Name' + "</td>");
+        s+= ("<td>" + 'Grade' + "</td>");
+        s+= ("<td>" + 'Student ID' + "</td></tr>");
+        for(var i=0; i<allStudents.length; i++){
+            s+= ("<tr><td>" + allStudents[i].firstName + "</td>");
+            s+= ("<td>" + allStudents[i].lastName + "</td>");
+            s+= ("<td>" + allStudents[i].grade + "</td>");
+            s+= ("<td>" + allStudents[i].id + "</td></tr>");
+        }
+        s+= "</table>";
+        document.getElementById("info").innerHTML = s;
     }
-    t+= "</table>";
-    console.log(t);
-    document.getElementById("info").innerHTML = t;
+    if(type == 2){
+        var t = "<table border = '1'>";
+        t+= ("<tr><td>" + 'First Name' + "</td>");
+        t+= ("<td>" + 'Last Name' + "</td>");
+        t+= ("<td>" + 'Subject' + "</td>");
+        for(var m=0; m<allTeachers.length; m++){
+            t+= ("<tr><td>" + allTeachers[m].firstName + "</td>");
+            t+= ("<td>" + allTeachers[m].lastName + "</td>");
+            t+= ("<td>" + allTeachers[m].subject + "</td></tr>");
+        }
+        t+= "</table>";
+        document.getElementById("info").innerHTML = t;
+    }
+    if(type == 3){
+        var sec = "<table border = '1'>";
+        sec+= ("<tr><td>" + 'Section Name' + "</td>");
+        sec+= ("<td>" + 'Teacher' + "</td>");
+        for(var n=0; n<allTeachers.length; n++){
+            sec+= "<tr><td><a href='#' onclick='studentList(allSections[n].id)'>" + allSections[n].name + "</a></td>";
+            sec+= ("<td>" + allSections[n].teacher + "</td></tr>");
+        }
+        sec+= "</table>";
+        document.getElementById("info").innerHTML = sec;
+    }
+
 }
 
 function addPerson() {
+    document.getElementById("notFilledOut").innerHTML = "";
     var person = document.getElementById("Category").value;
     console.log(person);
 
@@ -47,12 +76,15 @@ function addStudent() {
 
     if(firstName=="" || lastName=="" || grade==""){
         document.getElementById("notFilledOut").innerHTML = "Some fields have not been filled out! Please try again.";
-    }else{
-        document.getElementById("notFilledOut").innerHTML = "";
-        allStudents.push(new Student(firstName, lastName, grade));
-        // document.getElementById("students").innerHTML = "Student Added!";
         console.log(allStudents);
+    }else{
+        document.getElementById("notFilledOut").innerHTML = "Student Added!";
+        document.getElementById("students").style.display = "none";
+        allStudents.push(new Student(firstName, lastName, grade));
     }
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("grade").value = "";
 }
 
 function addTeacher() {
@@ -60,45 +92,88 @@ function addTeacher() {
     var lastName = document.getElementById("lasName").value;
     var subject = document.getElementById("subject").value;
 
-    allStudents.push(new Teacher(firstName, lastName, subject));
-    document.getElementById("teachers").innerHTML = "Teacher Added!";
-    console.log(allTeachers);
+    if(firstName=="" || lastName=="" || subject==""){
+        document.getElementById("notFilledOut").innerHTML = "Some fields have not been filled out! Please try again.";
+        console.log(allTeachers);
+    }else{
+        document.getElementById("notFilledOut").innerHTML = "Student Added!";
+        document.getElementById("teachers").style.display = "none";
+        allTeachers.push(new Teacher(firstName, lastName, subject));
+    }
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("subject").value = "";
 }
 
 function addSection() {
     var sectionName = document.getElementById("sectionName").value;
     var teacher = document.getElementById("teacherName").value;
 
-    allStudents.push(new Section(sectionName, teacher));
-    document.getElementById("sections").innerHTML = "Section Added!";
-    console.log(allSections);
+    if(sectionName=="" || teacher=="" ){
+        document.getElementById("notFilledOut").innerHTML = "Some fields have not been filled out! Please try again.";
+        console.log(allTeachers);
+    }else{
+        document.getElementById("sections").style.display = "none";
+        document.getElementById("notFilledOut").innerHTML = "Section Added!";
+        allSections.push(new Section(sectionName, teacher));
+    }
+    document.getElementById("sectionName").value = "";
+    document.getElementById("teacherName").value = "";
 }
 
-function displayStudentToSection() {
-    document.getElementById("addStu").style.display = "inline";
+// function displayStudentToSection() {
+//     document.getElementById("none").style.display = "inline";
+// }
+
+
+function buildSelectList() {
+    document.getElementById("none").style.display = "inline";
+
+    var stu = "";
+    for(var a=0; a<allStudents.length; a++){
+        stu+= "<option value = '" +
+            allStudents[a].id + "'>" +
+            allStudents[a].firstName + " " +
+            allStudents[a].lastName + "</option>"
+    }
+
+    document.getElementById("stuId").innerHTML = stu;
+
+    var sec = "";
+    for(var i=0; i<allSections.length; i++){
+        sec+= "<option value = '" +
+            allSections[i].id + "'>" +
+            allSections[i].name + " - " +
+            allSections[i].teacher + "</option>"
+    }
+    document.getElementById("secId").innerHTML = sec;
+    console.log(sec)
 }
 
-function addStuToSection(){
-    var stuID = document.getElementById("studentDropdown").value;
-    var secId = document.getElementById("sectionDropdown").value;
-
-    var studentObject = findStudentById(stuId);
-    var sectionObject = fundSectionById(id);
-
-    sectionObject.addStudent(studentObject);
-
-
-}
-
-function findStudentById(id) {
-
-    //iterate over all students arr
-    for(var i=0; i<allStudents.length; i++){
-        if(allStudents[i] == id){
-            return allStudents[i]
+function getSectionById(secId){
+    for(var i=0; i<allSections.length; i++){
+        if(allSections[i].id == secId){
+            return allSections[i];
         }
     }
-    // if (allStudents[i].id == id) { return allStudents[i] }
+}
+function getStudentById(stuId){
+    for(var i=0; i<allStudents.length; i++){
+        if(allStudents[i].id == stuId){
+            return allStudents[i];
+        }
+    }
+}
 
-    return student
+function addToSec(){
+    var student = document.getElementById("stuId").value;
+    var section = document.getElementById("secId").value;
+    console.log(section)
+    var sec = getSectionById(section);
+    var stu = getStudentById(student);
+    sec.addStudent(stu);
+}
+
+function studentList(secId){
+
 }
