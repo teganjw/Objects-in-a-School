@@ -12,8 +12,11 @@
 #none {
     display: none;
 }
-
+#none2 {
+    display: none;
+}
 t, th, td {
     /*border: 2px black solid;*/
     border-collapse: collapse;
 }
+

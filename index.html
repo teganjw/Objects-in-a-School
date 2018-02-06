@@ -13,6 +13,10 @@
 <h1>Elucidate</h1>
 <p>School Management System</p>
 
+<input type="text" id="search" value="" size="25" placeholder="Search Student">
+<button id="searchButton" onclick="Search()">Search</button>
+<div id = "stuSearch"></div>
+
 <p>View information of
     <select id="listCategory" onchange="(this.value)">
         <option value="1">Students</option>
@@ -61,11 +65,19 @@
 
 <p>
 <button id="myButton" onclick="buildSelectList()">Add a Student to a Section</button>
+    <button id="myButton2" onclick="removeStudentList()">Remove a Student from a Section</button>
 <div id = "none">
     <select id = "stuId"></select>
     <select id = "secId"></select>
     <button id="button2" onclick="addToSec()">add</button>
 </div>
+<div id = "list2"></div>
+<div id = "none2">
+    <select id = "studId" onchange = "chooseStudent()"></select>
+    <select id = "sectId"></select>
+    <button id="button3" onclick="remove()">remove</button>
+</div>
+<div id = "list5"></div>
 
 
 </body>
